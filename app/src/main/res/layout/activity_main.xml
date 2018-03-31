@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.smp.nestpersonalarm.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/on_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/dnd_switch"
+            android:layout_marginBottom="24dp"
+            android:text="@string/turn_on"
+            android:textSize="24sp" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@id/dnd_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/on_switch"
+            android:layout_marginBottom="24dp"
+            android:text="@string/dnd"
+            android:textSize="24sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dnd_switch"
+            android:layout_centerInParent="true"
+            android:onClick="onStopButton"
+            android:text="@string/stop_alarm" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>
