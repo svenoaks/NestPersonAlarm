@@ -1,4 +1,4 @@
-package com.smp.nestpersonalarm;
+package com.smp.nestsmokealarm;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

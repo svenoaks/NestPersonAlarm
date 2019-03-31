@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.smp.nestpersonalarm.MainActivity">
+    tools:context="com.smp.nestsmokealarm.MainActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"

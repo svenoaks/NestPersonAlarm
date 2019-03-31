@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nest Person Alarm</string>
+    <string name="app_name">Nest Smoke Alarm</string>
     <string name="service_name">NestListenerService</string>
     <string name="notification_listener_service">"Notification Listener Service"</string>
     <string name="notification_listener_service_explanation">"For the the app to work you need to enable the Notification Listener Service. Enable it now?"</string>
@@ -10,7 +10,7 @@
     <string name="channel_name">Alarm</string>
     <string name="channel_description">It\'s really loud</string>
     <string name="notification_title">Alarm Sounding</string>
-    <string name="notification_description">Nest has detected a person.</string>
+    <string name="notification_description">Emergency Smoke Alarm</string>
     <string name="stop">Stop</string>
     <string name="stop_alarm">Stop Alarm</string>
 </resources>

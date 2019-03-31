@@ -1,4 +1,4 @@
-package com.smp.nestpersonalarm;
+package com.smp.nestsmokealarm;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.smp.nestpersonalarm", appContext.getPackageName());
+        assertEquals("com.smp.nestsmokealarm", appContext.getPackageName());
     }
 }

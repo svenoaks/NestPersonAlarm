@@ -1,4 +1,4 @@
-package com.smp.nestpersonalarm;
+package com.smp.nestsmokealarm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,13 +14,12 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 
 import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 import static android.media.AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE;
-import static com.smp.nestpersonalarm.Utility.NOTIFICATION_ID;
-import static com.smp.nestpersonalarm.Utility.isDndOverride;
-import static com.smp.nestpersonalarm.Utility.isTurnedOn;
+import static com.smp.nestsmokealarm.Utility.NOTIFICATION_ID;
+import static com.smp.nestsmokealarm.Utility.isDndOverride;
+import static com.smp.nestsmokealarm.Utility.isTurnedOn;
 
 /**
  * Created by steve on 3/30/18.
@@ -82,7 +81,7 @@ public class NestListenerService extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn){
         int notificationCode = matchNotificationCode(sbn);
 
-        if(notificationCode == InterceptedNotificationCode.NEST_CODE && isTurnedOn(this) && isPersonAlarm(sbn)){ //&& isPersonAlarm(sbn)) {
+        if(notificationCode == InterceptedNotificationCode.NEST_CODE && isTurnedOn(this) && isSmokeAlarm(sbn)){ //&& isSmokeAlarm(sbn)) {
             if (player != null) {
                 player.stop();
             }
@@ -97,15 +96,15 @@ public class NestListenerService extends NotificationListenerService {
         }
     }
 
-    private boolean isPersonAlarm(StatusBarNotification sbn) {
+    private boolean isSmokeAlarm(StatusBarNotification sbn) {
         Bundle extras = sbn.getNotification().extras;
         String title = (String) extras.get(Notification.EXTRA_TEXT);
-        return title.toLowerCase().contains("person") || title.toLowerCase().contains("someone");
+        return title.toLowerCase().contains("emergency");
 
     }
 
     private void createNotification() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, com.smp.nestsmokealarm.MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
@@ -115,7 +114,7 @@ public class NestListenerService extends NotificationListenerService {
         PendingIntent stopPendingIntent =
                 PendingIntent.getBroadcast(this, 0, stopIntent, 0);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "NEST PERSON ALARM")
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "NEST SMOKE ALARM")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_description))

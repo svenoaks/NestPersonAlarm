@@ -1,4 +1,4 @@
-package com.smp.nestpersonalarm;
+package com.smp.nestsmokealarm;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -18,11 +18,11 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import static android.provider.Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS;
-import static com.smp.nestpersonalarm.NestListenerService.ACTION_STOP;
-import static com.smp.nestpersonalarm.Utility.isDndOverride;
-import static com.smp.nestpersonalarm.Utility.isTurnedOn;
-import static com.smp.nestpersonalarm.Utility.setDndOverride;
-import static com.smp.nestpersonalarm.Utility.setTurnedOn;
+import static com.smp.nestsmokealarm.NestListenerService.ACTION_STOP;
+import static com.smp.nestsmokealarm.Utility.isDndOverride;
+import static com.smp.nestsmokealarm.Utility.isTurnedOn;
+import static com.smp.nestsmokealarm.Utility.setDndOverride;
+import static com.smp.nestsmokealarm.Utility.setTurnedOn;
 
 public class MainActivity extends AppCompatActivity {
 
