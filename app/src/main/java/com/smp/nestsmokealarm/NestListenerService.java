@@ -1,6 +1,7 @@
 package com.smp.nestsmokealarm;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -8,10 +9,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
@@ -103,7 +106,28 @@ public class NestListenerService extends NotificationListenerService {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    public static void createPlaybackChannel(Context context) {
+        NotificationManager
+                notificationManager =
+                (NotificationManager) context
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationChannel channel = notificationManager.getNotificationChannel("Alarm");
+        if (channel != null) return;
+        CharSequence name = "Smoke Alarm";
+
+        String description = "Smoke Alarm";
+        NotificationChannel mChannel = new NotificationChannel("Alarm", name, NotificationManager.IMPORTANCE_HIGH);
+
+        mChannel.setDescription(description);
+        mChannel.setShowBadge(false);
+        mChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        notificationManager.createNotificationChannel(mChannel);
+    }
+
     private void createNotification() {
+        createPlaybackChannel(this);
         Intent intent = new Intent(this, com.smp.nestsmokealarm.MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -114,7 +138,7 @@ public class NestListenerService extends NotificationListenerService {
         PendingIntent stopPendingIntent =
                 PendingIntent.getBroadcast(this, 0, stopIntent, 0);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "NEST SMOKE ALARM")
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, "Alarm")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_description))
